@@ -37,7 +37,7 @@ Tables['professor'] = (
 # --------------------------------------------------------------------------
 # try to connect to SQL server 
 try:
-  cnx = mysql.connector.connect(user='root',password = "p@sswordis1379")
+  cnx = mysql.connector.connect(user='root',password = "")
   print("Connected SucsessFully!")
   cursor = cnx.cursor()
 except mysql.connector.Error as err:

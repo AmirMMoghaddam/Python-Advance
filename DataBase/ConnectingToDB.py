@@ -2,7 +2,7 @@ import mysql.connector
 from mysql.connector import errorcode
 
 try:
-  cnx = mysql.connector.connect(user='root',password = "p@sswordis1379",
+  cnx = mysql.connector.connect(user='root',password = "",
                                 database='world')
   print("Connected SucsessFully!")
 except mysql.connector.Error as err:
