@@ -234,7 +234,7 @@ class TheOrganizationApp(QMainWindow):
         self.task_display_widget = QWidget()
         layout = QVBoxLayout(self.task_display_widget)
 
-        task_str = f"Task: {task[0]}\nTag: {task[1]}\nDuration: {task[2]} hours\nImportance: {task[3]}"
+        task_str = f"Task: {task[1]}\nTag: {task[2]}\nDuration: {task[3]} hours\nImportance: {task[4]}"
         self.task_label = QLabel(task_str, self)
         self.task_label.setFont(QFont('Courier', 14))
         self.task_label.setWordWrap(True)
