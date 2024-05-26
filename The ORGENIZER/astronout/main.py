@@ -81,13 +81,22 @@ class TheAstronautApp(QWidget):
         self.add_task_widget = QWidget()
         layout = QVBoxLayout(self.add_task_widget)
 
+        back_button = self.create_back_button()
+        layout.addWidget(back_button)
+        
+        gif_label = QLabel(self)
+        movie = QMovie(r"C:\Users\amir\Documents\GitHub\Python-Advance\The ORGENIZER\astronout\giphy.gif")
+        gif_label.setMovie(movie)
+        movie.start()
+        gif_label.setFixedSize(750, 200)  # Adjust the size as needed
+        gif_label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(gif_label)
         title = QLabel("Add Task", self)
         title.setFont(QFont('Courier New', 24))
         title.setAlignment(Qt.AlignCenter)
         layout.addWidget(title)
+        title.setFont(QFont('Courier New', 24))
 
-        back_button = self.create_back_button()
-        layout.addWidget(back_button)
 
         self.name_entry = QLineEdit(self)
         self.name_entry.setPlaceholderText("Task Name")
@@ -280,17 +289,17 @@ class TheAstronautApp(QWidget):
         task_duration.setFont(QFont('Courier New', 18))
         layout.addWidget(task_duration)
 
-        task_importance = QLabel(f"Importance: {task[4]}", self)
+        task_importance = QLabel(f"Importance or Level: {task[4]}", self)
         task_importance.setFont(QFont('Courier New', 18))
         layout.addWidget(task_importance)
 
         button_layout = QHBoxLayout()
         done_button = QPushButton('Not Done', self)
+        done_button.clicked.connect(self.Ncomplete_task)
         button_layout.addWidget(done_button)
 
         delete_button = QPushButton('Done', self)
         delete_button.clicked.connect(self.delete_current_task)
-        delete_button.clicked.connect(self.complete_task)
         button_layout.addWidget(delete_button)
 
         layout.addLayout(button_layout)
@@ -298,14 +307,14 @@ class TheAstronautApp(QWidget):
         self.stacked_widget.addWidget(task_widget)
         self.stacked_widget.setCurrentWidget(task_widget)
 
-    def complete_task(self):
-        QMessageBox.information(self, "Task Completed", "Task marked as completed!")
+    def Ncomplete_task(self):
+        QMessageBox.information(self, "Task Not Completed", "Maybe Next time huh? ")
         self.go_to_main_window()
 
     def delete_current_task(self):
         task_id = self.current_task[0]
         database.delete_task(task_id)
-        QMessageBox.information(self, "Task Deleted", "Task has been deleted.")
+        QMessageBox.information(self, "Task Deleted", "Task has been marked Done.")
         self.go_to_main_window()
 
     def save_daily_plan(self):
